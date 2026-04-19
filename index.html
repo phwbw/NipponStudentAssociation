@@ -791,7 +791,7 @@
     grid.innerHTML = events.map(ev => `
       <div class="event-card ${ev.featured ? 'featured' : ''} fade-in">
         <div class="event-thumb" style="background:${ev.bgColor || '#1a0a0a'};">
-          <div class="event-thumb-kanji">${ev.kanji || '日'}</div>
+          ${ev.image ? `<img src="${ev.image}" alt="${ev.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`: `<div class="event-thumb-kanji">${ev.kanji || '日'}</div>`}
           ${ev.date ? `<span class="event-badge-date">${ev.date.toUpperCase()}</span>` : ''}
           ${ev.badge ? `<span class="event-badge-live">${ev.badge}</span>` : ''}
         </div>

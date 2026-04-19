@@ -3,68 +3,15 @@
     {
       "title": "Catman Meet & Greet + BBQ",
       "type": "Flagship Event",
-      "emoji": "🏮",
-      "date": "March 2026",
-      "location": "The Village Green, Kensington NSW, Australia",
-      "description": "Kai: YOOOO DID YOU HEAR, CATMAN IS GONNA BE AT NSA BBQ ON MONDAY!!!
-
-Shogo: who’s Catman…?
-
-Kai: The Japanese Superhero!! He’s been walking from the west end of Australia all the way to Sydney for 2 years, crazy right??!!
-
-Shogo: Woah that’s so cool, I really want to meet him!!
-
-Whether you want to meet Catman, get a free lunch or simply want to meet new people, make sure you come down to NSA’s BBQ‼️🍖🍗
-
-🗓️ Location: 16th of March (Monday)
-⏰ Time: 11:00am - 1:00pm
-📍 Location: UNSW Village Green
-💵 Price: Free for NSA Members
-               $2 for Non-Members.",
-      "kanji": "夏",
+      "emoji": "🍖",
+      "date": "16 March 2026 · Mon 11am–1pm",
+      "location": "UNSW Village Green, Kensington",
+      "description": "Kai: YOOOO DID YOU HEAR, CATMAN IS GONNA BE AT NSA BBQ ON MONDAY!!!\nShogo: who's Catman…?\nKai: The Japanese Superhero!! He's been walking from the west end of Australia all the way to Sydney for 2 years, crazy right??!!\nShogo: Woah that's so cool, I really want to meet him!!\n\nWhether you want to meet Catman, get a free lunch or simply want to meet new people, make sure you come down to NSA's BBQ‼️🍖🍗\n\n💵 Free for NSA Members · $2 for Non-Members",
+      "kanji": "猫",
       "bgColor": "#1a0a0a",
-      "badge": "Coming Soon",
+      "badge": "Free Entry",
       "featured": true,
       "link": "https://www.instagram.com/nsaunsw/"
-    },
-    {
-      "title": "Language Exchange Night",
-      "type": "Language",
-      "emoji": "🎌",
-      "date": "Every Fortnight",
-      "location": "UNSW Library Lawn",
-      "description": "Practice Japanese with native speakers and make new friends from Japan. All levels welcome — bring your textbook or just your curiosity.",
-      "kanji": "語",
-      "bgColor": "#1a1a2e",
-      "badge": "",
-      "featured": false,
-      "link": "https://www.instagram.com/nsaunsw/"
-    },
-    {
-      "title": "Ramen & Anime Night",
-      "type": "Food & Culture",
-      "emoji": "🍜",
-      "date": "May 2025",
-      "location": "Roundhouse, UNSW",
-      "description": "Bowl in hand, screen on. We're watching classic Studio Ghibli titles alongside a ramen cook-along. Cosy, cultural, and delicious.",
-      "kanji": "食",
-      "bgColor": "#1e0a00",
-      "badge": "",
-      "featured": false,
-      "link": "https://www.instagram.com/nsaunsw/"
-    },
-    {
-      "title": "Japan Trip Planning Session",
-      "type": "Travel",
-      "emoji": "✈️",
-      "date": "June 2025",
-      "location": "TBC",
-      "description": "Heading to Japan? Join our travel planning meetup and pick up our free Japan travel guide, packed with insider tips.",
-      "kanji": "旅",
-      "bgColor": "#0a1a0a",
-      "badge": "",
-      "featured": false,
-      "link": "#japan-guide"
     }
   ],
   "collaborations": [
@@ -95,12 +42,12 @@ Whether you want to meet Catman, get a free lunch or simply want to meet new peo
     },
     {
       "icon": "✈️",
-      "org": "VS Oceania",
-      "desc": "One of the biggest highlights - Highschool tours at UNSW run by NSA"
+      "org": "Student Travel Providers",
+      "desc": "Exclusive discounts and group travel arrangements for members heading to Japan."
     },
     {
       "icon": "📚",
-      "org": "UNSW Japanese Faculty",
+      "org": "UNSW Languages Dept.",
       "desc": "Academic partnerships supporting Japanese language learners with workshops and tutoring connections."
     }
   ]

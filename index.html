@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSA UNSW — Nihongo Society of Australia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f0d0a;
+      --paper: #f5f0e8;
+      --red: #c8102e;
+      --red-light: #e8213f;
+      --gold: #c9962a;
+      --muted: #7a7068;
+      --border: rgba(15,13,10,0.12);
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo .kanji { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; color: var(--red); }
+    .nav-logo .wordmark { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      padding: 0.5rem 1.25rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.05em; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-light); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 3rem 5rem 5rem;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--red); }
+    .hero-h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-h1 em { color: var(--red); font-style: normal; }
+    .hero-sub {
+      font-size: 1.125rem; font-weight: 300; color: var(--muted);
+      max-width: 42ch; line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      padding: 0.875rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 600; font-size: 0.9375rem;
+      letter-spacing: 0.04em; transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--ink); border: 1.5px solid var(--border);
+      padding: 0.875rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 500; font-size: 0.9375rem;
+      letter-spacing: 0.04em; transition: border-color 0.2s, color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat-num { font-family: 'Shippori Mincho', serif; font-size: 2.25rem; font-weight: 700; color: var(--ink); }
+    .stat-label { font-size: 0.8125rem; color: var(--muted); font-weight: 400; margin-top: 0.25rem; }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: var(--ink);
+    }
+    .hero-right::before {
+      content: '日本語';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 18rem; font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .hero-right-inner {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+    }
+    .hero-pattern {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+    }
+    .hero-ig-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      max-width: 340px;
+    }
+    .hero-ig-card .ig-handle { color: var(--white); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; }
+    .hero-ig-card .ig-desc { color: rgba(255,255,255,0.5); font-size: 0.8125rem; line-height: 1.6; margin-bottom: 1rem; }
+    .hero-ig-card a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--white); text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .hero-ig-card a:hover { border-color: var(--white); }
+
+    /* ── SECTION SCAFFOLDING ── */
+    section { padding: 6rem 0; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .section-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--red); }
+    .section-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-lead { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; max-width: 58ch; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-visual {
+      position: relative;
+      height: 420px;
+    }
+    .about-card-bg {
+      position: absolute; inset: 0;
+      background: var(--ink);
+      border-radius: 4px;
+    }
+    .about-card-bg::after {
+      content: '文化';
+      position: absolute; bottom: -1rem; right: -1rem;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 8rem; font-weight: 800; color: rgba(200,16,46,0.18);
+      line-height: 1;
+    }
+    .about-badge {
+      position: absolute; bottom: 2rem; left: -2rem;
+      background: var(--red);
+      color: var(--white);
+      padding: 1.25rem 1.5rem;
+      border-radius: 2px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1rem; font-weight: 600;
+      box-shadow: 0 8px 32px rgba(200,16,46,0.35);
+    }
+    .about-badge .yr { font-size: 2rem; font-weight: 800; display: block; }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+    .pill {
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.8125rem; font-weight: 500;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ── EVENTS ── */
+    #events { background: var(--paper); }
+    .events-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .event-card {
+      background: var(--white);
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .event-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,13,10,0.1); }
+    .event-card.featured { grid-column: span 2; }
+    .event-thumb {
+      height: 220px; background: var(--ink);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .event-card.featured .event-thumb { height: 280px; }
+    .event-thumb-kanji {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 6rem; font-weight: 800; color: rgba(255,255,255,0.07);
+    }
+    .event-badge-date {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--red); color: var(--white);
+      padding: 0.35rem 0.75rem; border-radius: 2px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    }
+    .event-badge-live {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--gold); color: var(--white);
+      padding: 0.35rem 0.75rem; border-radius: 2px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+    .event-body { padding: 1.5rem; }
+    .event-type { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .event-name { font-family: 'Shippori Mincho', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .event-card.featured .event-name { font-size: 1.625rem; }
+    .event-meta { font-size: 0.8125rem; color: var(--muted); margin-bottom: 1rem; }
+    .event-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    .event-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; font-size: 0.875rem; font-weight: 600; color: var(--red); text-decoration: none; }
+    .event-link:hover { gap: 0.7rem; }
+
+    /* ── COLLAB ── */
+    #collaborations { background: var(--ink); }
+    #collaborations .section-tag { color: var(--gold); }
+    #collaborations .section-tag::before { background: var(--gold); }
+    #collaborations .section-title { color: var(--white); }
+    #collaborations .section-lead { color: rgba(255,255,255,0.5); }
+    .collab-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 3rem; border: 1px solid rgba(255,255,255,0.08); }
+    .collab-card {
+      background: rgba(255,255,255,0.03);
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.25s;
+    }
+    .collab-card:hover { background: rgba(200,16,46,0.1); }
+    .collab-icon { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; color: var(--red); margin-bottom: 1rem; }
+    .collab-org { font-family: 'Shippori Mincho', serif; font-size: 1.125rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .collab-desc { font-size: 0.8125rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ── JAPAN GUIDE ── */
+    #japan-guide { background: var(--paper); position: relative; overflow: hidden; }
+    .japan-guide-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .guide-visual {
+      background: var(--red);
+      border-radius: 4px;
+      padding: 3.5rem 2.5rem;
+      position: relative; overflow: hidden;
+      min-height: 400px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .guide-visual::before {
+      content: '日本';
+      position: absolute; top: -1rem; right: -1rem;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 14rem; font-weight: 800; color: rgba(255,255,255,0.08);
+      line-height: 1;
+    }
+    .guide-title-jp { font-family: 'Shippori Mincho', serif; font-size: 3.5rem; font-weight: 800; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; position: relative; z-index: 1; }
+    .guide-subtitle { color: rgba(255,255,255,0.7); font-size: 0.9rem; position: relative; z-index: 1; }
+    .guide-free-badge {
+      position: absolute; top: 2rem; right: 2rem;
+      background: var(--white); color: var(--red);
+      font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em;
+      padding: 0.5rem 0.875rem; border-radius: 100px; text-transform: uppercase;
+      z-index: 1;
+    }
+    .guide-features { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .guide-feature { display: flex; gap: 1rem; align-items: flex-start; }
+    .guide-feature-icon { font-size: 1.25rem; margin-top: 2px; }
+    .guide-feature-text { font-size: 0.9375rem; color: var(--muted); line-height: 1.6; }
+    .guide-feature-text strong { color: var(--ink); }
+    .guide-download-form { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.875rem; }
+    .guide-input {
+      width: 100%; padding: 0.875rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 2px;
+      background: var(--white); font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem; color: var(--ink);
+      outline: none; transition: border-color 0.2s;
+    }
+    .guide-input:focus { border-color: var(--red); }
+    .guide-input::placeholder { color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .contact-card {
+      border: 1.5px solid var(--border);
+      border-radius: 4px; padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .contact-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .contact-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .contact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .contact-card-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
+    .contact-form-fields { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-input {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 2px;
+      background: var(--paper); font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; color: var(--ink);
+      outline: none; transition: border-color 0.2s;
+    }
+    .contact-input:focus { border-color: var(--red); background: var(--white); }
+    .contact-input::placeholder { color: #b0a898; }
+    textarea.contact-input { min-height: 90px; resize: vertical; }
+    .btn-submit {
+      width: 100%; padding: 0.75rem;
+      background: var(--red); color: var(--white);
+      border: none; border-radius: 2px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.05em; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--red-light); }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--paper); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: auto auto; gap: 4px; margin-top: 2.5rem; }
+    .gallery-cell {
+      background: var(--ink); border-radius: 2px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 1;
+      font-family: 'Shippori Mincho', serif; color: rgba(255,255,255,0.12);
+      font-size: 2rem;
+      transition: opacity 0.25s;
+      cursor: pointer;
+    }
+    .gallery-cell:hover { opacity: 0.8; }
+    .gallery-cell:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; min-height: 280px; font-size: 5rem; }
+    .gallery-cell:nth-child(4) { grid-column: span 2; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand .kanji { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; color: var(--red); }
+    .footer-brand .tagline { margin-top: 1rem; font-size: 0.875rem; line-height: 1.7; max-width: 32ch; }
+    .footer-col-title { color: var(--white); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.8125rem; }
+    .footer-ig {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--white); text-decoration: none;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem; border-radius: 100px;
+      font-size: 0.8125rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .footer-ig:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .hero-right { min-height: 280px; }
+      .about-grid, .japan-guide-inner { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .event-card.featured { grid-column: span 1; }
+      .collab-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .events-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .hero-stats { gap: 2rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── DIVIDER ── */
+    .wave-divider { display: block; width: 100%; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--ink); color: var(--white);
+      padding: 1rem 1.5rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      z-index: 999;
+      transform: translateY(80px); opacity: 0;
+      transition: transform 0.35s, opacity 0.35s;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* membership banner */
+    .membership-banner {
+      background: var(--red);
+      padding: 1rem 2.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .membership-banner p { color: var(--white); font-size: 0.9375rem; font-weight: 500; }
+    .membership-banner a {
+      background: var(--white); color: var(--red);
+      padding: 0.4rem 1.125rem; border-radius: 2px;
+      text-decoration: none; font-weight: 700; font-size: 0.875rem;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="kanji">日</span>
+    <span class="wordmark">NSA UNSW</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#collaborations">Collabs</a></li>
+    <li><a href="#japan-guide">Japan Guide</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://www.instagram.com/nsaunsw/" target="_blank">Follow Us</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-tag">UNSW's Japanese Culture Society</span>
+    <h1 class="hero-h1">Connect.<br>Celebrate.<br><em>Nihon.</em></h1>
+    <p class="hero-sub">NSA UNSW is your home for Japanese language, culture, and community at the University of New South Wales. From anime screenings to cultural festivals, we bring Japan to Sydney.</p>
+    <div class="hero-actions">
+      <a href="#events" class="btn-primary">Explore Events →</a>
+      <a href="https://www.instagram.com/nsaunsw/" target="_blank" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @nsaunsw
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Members</div>
+      </div>
+      <div>
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Events per year</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Partner clubs</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-right-inner">
+      <div class="hero-ig-card">
+        <div class="ig-handle">📸 @nsaunsw on Instagram</div>
+        <div class="ig-desc">Our most active social platform — event announcements, culture spotlights, and behind-the-scenes from every NSA event.</div>
+        <a href="https://www.instagram.com/nsaunsw/" target="_blank">
+          Follow for updates →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP BANNER -->
+<div class="membership-banner">
+  <p>🌸 &nbsp;Memberships for 2025 are open! Join NSA UNSW today and get access to exclusive events, discounts and more.</p>
+  <a href="https://www.arc.unsw.edu.au/clubs/nsa" target="_blank">Become a Member</a>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-card-bg"></div>
+        <div class="about-badge">
+          <span class="yr">Est.</span>
+          UNSW Arc Club
+        </div>
+      </div>
+      <div>
+        <span class="section-tag">Who we are</span>
+        <h2 class="section-title">More than a Japanese club — a community</h2>
+        <p class="section-lead">The Nihongo Society of Australia (NSA) at UNSW is a student-run society dedicated to celebrating Japanese culture, language, and the connections that bring people together. Whether you're a complete beginner or a seasoned Japan enthusiast, you belong here.</p>
+        <div class="about-pills" style="margin-top:2rem">
+          <span class="pill">🎌 Cultural Festivals</span>
+          <span class="pill">🎎 Japanese Language</span>
+          <span class="pill">🍜 Food Events</span>
+          <span class="pill">🎬 Anime Screenings</span>
+          <span class="pill">🏮 Matsuri Nights</span>
+          <span class="pill">✈️ Japan Travel</span>
+          <span class="pill">🎶 J-Music</span>
+          <span class="pill">🤝 Networking</span>
+        </div>
+        <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="https://www.arc.unsw.edu.au/clubs/nsa" target="_blank" class="btn-primary">Join NSA</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="events-header">
+      <div>
+        <span class="section-tag">What's on</span>
+        <h2 class="section-title">Upcoming Events</h2>
+      </div>
+      <a href="https://www.instagram.com/nsaunsw/" target="_blank" class="btn-ghost" style="white-space:nowrap">All events on Instagram →</a>
+    </div>
+    <!-- Events loaded from data.json -->
+    <div class="events-grid" id="events-grid">
+      <div style="color:var(--muted);font-size:0.9rem;padding:2rem 0;">Loading events…</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIONS -->
+<section id="collaborations">
+  <div class="container">
+    <span class="section-tag">Partnerships</span>
+    <h2 class="section-title" style="color:var(--white)">Collaborations We're Proud Of</h2>
+    <p class="section-lead">NSA UNSW actively partners with student societies, cultural organisations, and industry partners to create bigger and more meaningful experiences for our community.</p>
+
+    <!-- Collabs loaded from data.json -->
+    <div class="collab-grid" id="collab-grid">
+      <div style="color:rgba(255,255,255,0.3);font-size:0.9rem;padding:2rem 0;">Loading collaborations…</div>
+    </div>
+  </div>
+</section>
+
+<!-- JAPAN GUIDE -->
+<section id="japan-guide">
+  <div class="container">
+    <div class="japan-guide-inner">
+      <div>
+        <span class="section-tag">Free Resource</span>
+        <h2 class="section-title">Our Japan Travel Guide</h2>
+        <p class="section-lead">Planning your first (or fifth) trip to Japan? Our members and cultural education team have put together a free, comprehensive travel guide covering everything you need — from getting your IC card right to finding the best hidden ramen spots.</p>
+
+        <div class="guide-features">
+          <div class="guide-feature">
+            <div class="guide-feature-icon">🗾</div>
+            <div class="guide-feature-text"><strong>Region-by-region breakdown</strong> — Tokyo, Kyoto, Osaka, Hiroshima and beyond. What to see, eat, and do in each city.</div>
+          </div>
+          <div class="guide-feature">
+            <div class="guide-feature-icon">💴</div>
+            <div class="guide-feature-text"><strong>Budget planning tools</strong> — real costs, money-saving tips, and how to make the most of a student budget in Japan.</div>
+          </div>
+          <div class="guide-feature">
+            <div class="guide-feature-icon">🚄</div>
+            <div class="guide-feature-text"><strong>Transport guide</strong> — IC cards, Shinkansen passes, and navigating Japan's world-class train network.</div>
+          </div>
+          <div class="guide-feature">
+            <div class="guide-feature-icon">🏮</div>
+            <div class="guide-feature-text"><strong>Cultural etiquette</strong> — written by our cultural education team so you visit with confidence and respect.</div>
+          </div>
+        </div>
+
+        <div class="guide-download-form" style="max-width:420px;">
+          <input class="guide-input" type="text" placeholder="Your name" id="guide-name"/>
+          <input class="guide-input" type="email" placeholder="Your UNSW email" id="guide-email"/>
+          <button class="btn-primary" onclick="downloadGuide()" style="width:100%;padding:0.875rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9375rem;">
+            📩 &nbsp; Get the Free Guide
+          </button>
+          <p style="font-size:0.75rem;color:var(--muted);">Free for everyone — no spam. You'll also receive NSA event updates.</p>
+        </div>
+      </div>
+
+      <div class="guide-visual">
+        <div class="guide-free-badge">FREE</div>
+        <div class="guide-title-jp">日本へ</div>
+        <div class="guide-subtitle">NSA UNSW's Complete Japan Travel Guide<br>by students, for students.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <span class="section-tag">Moments</span>
+    <h2 class="section-title">Life at NSA UNSW</h2>
+    <p class="section-lead">A glimpse into our events, socials, and the community we've built. For the full experience, follow us on Instagram.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-cell" style="background:#1a0a0a;">夏</div>
+      <div class="gallery-cell" style="background:#0a0a1a;">祭</div>
+      <div class="gallery-cell" style="background:#0a1a0a;">食</div>
+      <div class="gallery-cell" style="background:#1a1a0a;">語</div>
+      <div class="gallery-cell" style="background:#0a1a1a;">旅</div>
+      <div class="gallery-cell" style="background:#1a0a1a;">文</div>
+      <div class="gallery-cell" style="background:#150a00;">化</div>
+      <div class="gallery-cell" style="background:#000a15;">楽</div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="https://www.instagram.com/nsaunsw/" target="_blank" class="btn-ghost" style="display:inline-flex;">📸 &nbsp;See all photos @nsaunsw</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="section-tag">Get in touch</span>
+    <h2 class="section-title">We'd love to hear from you</h2>
+    <p class="section-lead">Whether you want to attend events, explore sponsorship, or learn more about Japanese culture — our teams are here for you.</p>
+
+    <div class="contact-grid">
+      <!-- Events Team -->
+      <div class="contact-card">
+        <div class="contact-card-icon">🎌</div>
+        <div class="contact-card-title">Events Team</div>
+        <div class="contact-card-desc">Questions about upcoming events, logistics, volunteering, or running an activity with us? Reach our events crew.</div>
+        <div class="contact-form-fields">
+          <input class="contact-input" type="text" placeholder="Your name" />
+          <input class="contact-input" type="email" placeholder="Your email" />
+          <textarea class="contact-input" placeholder="Your message..."></textarea>
+          <button class="btn-submit" onclick="sendContact('Events')">Send to Events Team</button>
+        </div>
+      </div>
+
+      <!-- Sponsorship Team -->
+      <div class="contact-card">
+        <div class="contact-card-icon">🤝</div>
+        <div class="contact-card-title">Sponsorship Team</div>
+        <div class="contact-card-desc">Interested in sponsoring NSA UNSW events or building a partnership with our community of 500+ students? Let's talk.</div>
+        <div class="contact-form-fields">
+          <input class="contact-input" type="text" placeholder="Your name / organisation" />
+          <input class="contact-input" type="email" placeholder="Business email" />
+          <textarea class="contact-input" placeholder="Tell us about your organisation and what you have in mind..."></textarea>
+          <button class="btn-submit" onclick="sendContact('Sponsorship')">Send to Sponsorship Team</button>
+        </div>
+      </div>
+
+      <!-- Cultural Education / International Liaison -->
+      <div class="contact-card">
+        <div class="contact-card-icon">🌸</div>
+        <div class="contact-card-title">Cultural Education & International Liaison</div>
+        <div class="contact-card-desc">Japanese international students settling into UNSW, or need cultural resources and support? Our liaison team is here for you.</div>
+        <div class="contact-form-fields">
+          <input class="contact-input" type="text" placeholder="Your name" />
+          <input class="contact-input" type="email" placeholder="Your email" />
+          <textarea class="contact-input" placeholder="How can we help? (in English or Japanese / 日本語でもOKです)"></textarea>
+          <button class="btn-submit" onclick="sendContact('Cultural Education')">Send to CE & IL Team</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="kanji">日</div>
+        <div style="color:rgba(255,255,255,0.9); font-family:'Shippori Mincho',serif; font-size:1.1rem; font-weight:700; margin-top:0.5rem;">NSA UNSW</div>
+        <div class="tagline">Celebrating Japanese language and culture at the University of New South Wales. Everyone is welcome at NSA.</div>
+        <div style="margin-top:1.5rem;">
+          <a href="https://www.instagram.com/nsaunsw/" target="_blank" class="footer-ig">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @nsaunsw
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#about">About NSA</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#collaborations">Collaborations</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#japan-guide">Japan Travel Guide</a></li>
+          <li><a href="https://www.arc.unsw.edu.au/clubs/nsa" target="_blank">Become a Member</a></li>
+          <li><a href="https://www.instagram.com/nsaunsw/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#contact">Events Team</a></li>
+          <li><a href="#contact">Sponsorship</a></li>
+          <li><a href="#contact">Cultural Education</a></li>
+          <li><a href="#contact">International Liaison</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 NSA UNSW — Nihongo Society of Australia, University of New South Wales</p>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.25);">Made with ❤️ by the NSA team</p>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Load events & collabs from data.json ──
+  async function loadData() {
+    try {
+      const res = await fetch('data.json');
+      const data = await res.json();
+      renderEvents(data.events || []);
+      renderCollabs(data.collaborations || []);
+    } catch (e) {
+      console.warn('Could not load data.json:', e);
+    }
+  }
+
+  function renderEvents(events) {
+    const grid = document.getElementById('events-grid');
+    if (!events.length) { grid.innerHTML = '<p style="color:var(--muted)">No upcoming events — check our Instagram for updates.</p>'; return; }
+    grid.innerHTML = events.map(ev => `
+      <div class="event-card ${ev.featured ? 'featured' : ''} fade-in">
+        <div class="event-thumb" style="background:${ev.bgColor || '#1a0a0a'};">
+          <div class="event-thumb-kanji">${ev.kanji || '日'}</div>
+          ${ev.date ? `<span class="event-badge-date">${ev.date.toUpperCase()}</span>` : ''}
+          ${ev.badge ? `<span class="event-badge-live">${ev.badge}</span>` : ''}
+        </div>
+        <div class="event-body">
+          <div class="event-type">${ev.emoji || ''} ${ev.type || ''}</div>
+          <div class="event-name">${ev.title}</div>
+          <div class="event-meta">${ev.date ? `📅 ${ev.date}` : ''}${ev.location ? ` &nbsp;·&nbsp; 📍 ${ev.location}` : ''}</div>
+          <div class="event-desc">${ev.description || ''}</div>
+          ${ev.link ? `<a href="${ev.link}" ${ev.link.startsWith('http') ? 'target="_blank"' : ''} class="event-link">More details →</a>` : ''}
+        </div>
+      </div>
+    `).join('');
+    // Re-observe new fade-in elements
+    grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }
+
+  function renderCollabs(collabs) {
+    const grid = document.getElementById('collab-grid');
+    const cards = collabs.map(c => `
+      <div class="collab-card fade-in">
+        <div class="collab-icon">${c.icon || '🤝'}</div>
+        <div class="collab-org">${c.org}</div>
+        <div class="collab-desc">${c.desc || ''}</div>
+      </div>
+    `).join('');
+    // Always append the "partner with us" CTA tile
+    grid.innerHTML = cards + `
+      <div class="collab-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+        <div style="color:rgba(255,255,255,0.3);font-size:0.85rem;line-height:1.7;">Interested in partnering<br>with NSA UNSW?</div>
+        <a href="#contact" style="color:var(--gold);font-size:0.875rem;font-weight:600;text-decoration:none;margin-top:1rem;">Reach our sponsorship team →</a>
+      </div>
+    `;
+    grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }
+
+  loadData();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Add fade-in to cards
+  document.querySelectorAll('.contact-card, .collab-card, .event-card, .guide-feature').forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // Contact forms
+  function sendContact(team) {
+    showToast(`✅ Message sent to the ${team} Team! We'll get back to you soon.`);
+  }
+
+  // Guide download
+  function downloadGuide() {
+    const name = document.getElementById('guide-name').value.trim();
+    const email = document.getElementById('guide-email').value.trim();
+    if (!name || !email) { showToast('⚠️ Please enter your name and email.'); return; }
+    showToast(`🎉 Thanks ${name}! The guide will be sent to ${email}.`);
+  }
+
+  // Mobile menu toggle (basic)
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    if (links) {
+      const showing = links.style.display === 'flex';
+      links.style.display = showing ? '' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'fixed';
+      links.style.top = '64px';
+      links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'var(--paper)';
+      links.style.padding = '1.5rem 2.5rem';
+      links.style.borderBottom = '1px solid var(--border)';
+      links.style.zIndex = '99';
+      if (showing) {
+        links.style.display = 'none';
+      }
+    }
+  }
+</script>
+</body>
+</html>

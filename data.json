@@ -1,0 +1,93 @@
+{
+  "events": [
+    {
+      "title": "Natsu Matsuri — Summer Festival Night",
+      "type": "Flagship Event",
+      "emoji": "🏮",
+      "date": "May 2025",
+      "location": "UNSW Campus",
+      "description": "Our biggest event of the year. Yukata dress-up, traditional games, food stalls, taiko drumming, and live performances. A full evening of Japanese summer festival magic right here in Sydney.",
+      "kanji": "夏",
+      "bgColor": "#1a0a0a",
+      "badge": "Coming Soon",
+      "featured": true,
+      "link": "https://www.instagram.com/nsaunsw/"
+    },
+    {
+      "title": "Language Exchange Night",
+      "type": "Language",
+      "emoji": "🎌",
+      "date": "Every Fortnight",
+      "location": "UNSW Library Lawn",
+      "description": "Practice Japanese with native speakers and make new friends from Japan. All levels welcome — bring your textbook or just your curiosity.",
+      "kanji": "語",
+      "bgColor": "#1a1a2e",
+      "badge": "",
+      "featured": false,
+      "link": "https://www.instagram.com/nsaunsw/"
+    },
+    {
+      "title": "Ramen & Anime Night",
+      "type": "Food & Culture",
+      "emoji": "🍜",
+      "date": "May 2025",
+      "location": "Roundhouse, UNSW",
+      "description": "Bowl in hand, screen on. We're watching classic Studio Ghibli titles alongside a ramen cook-along. Cosy, cultural, and delicious.",
+      "kanji": "食",
+      "bgColor": "#1e0a00",
+      "badge": "",
+      "featured": false,
+      "link": "https://www.instagram.com/nsaunsw/"
+    },
+    {
+      "title": "Japan Trip Planning Session",
+      "type": "Travel",
+      "emoji": "✈️",
+      "date": "June 2025",
+      "location": "TBC",
+      "description": "Heading to Japan? Join our travel planning meetup and pick up our free Japan travel guide, packed with insider tips.",
+      "kanji": "旅",
+      "bgColor": "#0a1a0a",
+      "badge": "",
+      "featured": false,
+      "link": "#japan-guide"
+    }
+  ],
+  "collaborations": [
+    {
+      "icon": "🏯",
+      "org": "UNSW K-Society",
+      "desc": "Joint cultural evenings bringing together East Asian communities — K-pop meets J-pop in unforgettable socials."
+    },
+    {
+      "icon": "🎭",
+      "org": "Anime Society UNSW",
+      "desc": "Co-hosting anime screenings, cosplay nights, and conventions where fandoms collide."
+    },
+    {
+      "icon": "🌸",
+      "org": "Japan Foundation Sydney",
+      "desc": "Cultural education partner providing resources, guest speakers, and support for our Japanese language initiatives."
+    },
+    {
+      "icon": "🤝",
+      "org": "International Student Hub",
+      "desc": "Supporting international students from Japan transitioning into life at UNSW through our liaison program."
+    },
+    {
+      "icon": "🍣",
+      "org": "Local Japanese Businesses",
+      "desc": "Partnering with Sydney's Japanese restaurant and business community for authentic cultural and culinary events."
+    },
+    {
+      "icon": "✈️",
+      "org": "Student Travel Providers",
+      "desc": "Exclusive discounts and group travel arrangements for members heading to Japan."
+    },
+    {
+      "icon": "📚",
+      "org": "UNSW Languages Dept.",
+      "desc": "Academic partnerships supporting Japanese language learners with workshops and tutoring connections."
+    }
+  ]
+}
